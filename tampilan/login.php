@@ -3,7 +3,7 @@ session_start();
 
 // Redirect to index.php if the user is already logged in
 if (isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
@@ -30,7 +30,7 @@ if (isset($_SESSION['username'])) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/custom/style.css">
 
 </head>
 <body class="az-body">
