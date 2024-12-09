@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
     // Verifikasi password yang di-hash dengan password yang dimasukkan
     if (password_verify($password, $user['password'])) { 
         $_SESSION['username'] = $username; 
-        header("Location: ../tampilan/index.php"); 
+        header("Location: ../index.php"); 
     } else { 
         echo "Login gagal. Password salah. <a href='../tampilan/login.php'>Coba lagi</a>"; 
     } 
