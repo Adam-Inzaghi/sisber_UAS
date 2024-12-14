@@ -44,6 +44,8 @@ if (!isset($_SESSION['username'])) {
     border-radius: 5px;">Data Member</a>
     <a href="./tampilan/form_order.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
     border-radius: 5px;">Tambah Orderan</a>
+    <a href="./tampilan/barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Data Barang</a>
     <p><a href="proses/proses_logout.php">Logout</a></p>
 </body>
 

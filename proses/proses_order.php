@@ -2,12 +2,14 @@
 require_once 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = $_POST['nama'];
-    $no_hp = $_POST['no_hp'];
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $id_barang = $_POST['id_barang'];
+    $quantity = $_POST['quantity'];
+    $total_payment = $_POST['total_payment'];
+    $tgl_pengembalian = $_POST['tgl_pengembalian'];
 
-
-    $stmt = $conn->prepare("INSERT INTO pelanggan (nama, no_hp, created_at, updated_at) VALUES (?, ?, NOW(), NOW())");
-    $stmt->bind_param("ss", $nama, $no_hp);
+    $stmt = $conn->prepare("INSERT INTO `order` (id_pelanggan, id_barang, quantity, total_payment, tgl_pengembalian, created_at, updated_at) VALUES (?, ?, ?, ?, ?, NOW(), NOW())");
+    $stmt->bind_param("iiiis", $id_pelanggan, $id_barang, $quantity, $total_payment, $tgl_pengembalian );
 
     if ($stmt->execute()) {
         echo "Data berhasil disimpan!<br>";

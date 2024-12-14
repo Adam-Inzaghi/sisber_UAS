@@ -4,7 +4,7 @@
 require_once '../proses/koneksi.php';
  
 // Fetch all users data from database
-$result = mysqli_query($conn, "SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
+$result = mysqli_query($conn, "SELECT * FROM barang ORDER BY id_barang DESC");
 ?>
  
 <html>
@@ -18,21 +18,22 @@ $result = mysqli_query($conn, "SELECT * FROM pelanggan ORDER BY id_pelanggan DES
     <table width='80%' border=1>
  
     <tr>
-        <th>id pelanggan</th> 
-        <th>nama</th> 
-        <th>nomor hp</th> 
+        <th>id_barang</th> 
+        <th>tipe</th> 
+        <th>quantity</th> 
+        <th>harga</th> 
         <th>action</th> 
     </tr>
     <?php  
     while($user_data = mysqli_fetch_array($result)) {         
         echo "<tr>";
-        echo "<td>".$user_data['id_pelanggan']."</td>";
-        echo "<td>".$user_data['nama']."</td>";
-        echo "<td>".$user_data['no_hp']."</td>";  
-        echo "<td><a href='edit.php?id=$user_data[id_pelanggan]'>Edit</a> | <a href='delete.php?id=$user_data[id_pelanggan]'>Delete</a></td></tr>";        
+        echo "<td>".$user_data['id_barang']."</td>";
+        echo "<td>".$user_data['tipe']."</td>";
+        echo "<td>".$user_data['quantity']."</td>";    
+        echo "<td>".$user_data['harga']."</td>";  
+        echo "<td><a href='edit.php?id=$user_data[id_barang]'>Edit</a> | <a href='delete.php?id=$user_data[id_barang]'>Delete</a></td></tr>";        
     }
     ?>
-    
     </table>
     <br>
     <a href="../index.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
