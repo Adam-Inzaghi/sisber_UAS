@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-session_start(); 
+session_start();
 
 // Redirect to login.php if the user is not logged in
 if (!isset($_SESSION['username'])) {
@@ -10,25 +10,9 @@ if (!isset($_SESSION['username'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-90680653-2');
-    </script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-ti-fit=no">
-    
-    <link href="../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../lib/typicons.font/typicons.css" rel="stylesheet">
-    <link href="../lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./css/custom/style.css">
 </head>
+
 <body>
 
     <!-- az-header left -->
@@ -51,23 +35,18 @@ if (!isset($_SESSION['username'])) {
     </div>
     <!-- az-header-menu-header -->
 
-<head> 
+    <h2>Selamat datang, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
+    <a href="./tampilan/form_barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Tambah Barang</a>
+     <a href="./tampilan/form_member.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Tambah Member</a>
+    <a href="./tampilan/member.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Data Member</a>
+    <a href="./tampilan/form_order.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Tambah Orderan</a>
+    <a href="./tampilan/barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
+    border-radius: 5px;">Data Barang</a>
+    <p><a href="proses/proses_logout.php">Logout</a></p>
+</body>
 
- <meta charset="UTF-8"> 
-
- <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
- <link href="../css/bootstrap.min.css" rel="stylesheet">
-
- <title>Welcome</title> 
-
-</head> 
-
-<body> 
-
- <h2>Selamat datang, <?php echo $_SESSION['username']; ?>!</h2> 
-
- <p><a href="../proses/proses_logout.php">Logout</a></p> 
-
-</body> 
-<script src="../js/bootstrap.bundle.min.js"></script>
 </html>
