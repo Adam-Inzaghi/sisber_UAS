@@ -11,13 +11,13 @@ if (isset($_SESSION['username'])) {
 <html lang="en">
 <head>
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-90680653-2');
-    </script>
+    </script> -->
     
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
     <title>Login</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../css/custom/style.css">
 
@@ -62,7 +62,7 @@ if (isset($_SESSION['username'])) {
     </div><!-- az-signin-wrapper -->
 
     <!-- Bootstrap JS and dependencies -->
-    <script src="../lib/jquery/jquery.min.js"></script>
+    <!-- <script src="../lib/jquery/jquery.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/ionicons/ionicons.js"></script>
     <script src="../js/jquery.cookie.js" type="text/javascript"></script>
@@ -71,7 +71,7 @@ if (isset($_SESSION['username'])) {
         $(function(){
             'use strict'
         });
-    </script>
+    </script> -->
 
 </body>
 </html>
