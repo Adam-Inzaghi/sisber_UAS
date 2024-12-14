@@ -10,26 +10,6 @@ if (!isset($_SESSION['username'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script> -->
-<!-- <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-90680653-2');
-</script> -->
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-ti-fit=no">
-
-<!-- <link href="../lib/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-<link href="../lib/typicons.font/typicons.css" rel="stylesheet">
-<link href="../lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet"> -->
-
 <link rel="stylesheet" href="./css/custom/style.css">
 </head>
 
@@ -65,7 +45,6 @@ if (!isset($_SESSION['username'])) {
     <a href="./tampilan/form_order.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; 
     border-radius: 5px;">Tambah Orderan</a>
     <p><a href="proses/proses_logout.php">Logout</a></p>
-    <!-- <script src="../js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 </body>
 
 </html>

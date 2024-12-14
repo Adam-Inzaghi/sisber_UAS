@@ -10,21 +10,7 @@ if (isset($_SESSION['username'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-90680653-2');
-    </script> -->
     
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta name="description" content="Responsive Bootstrap 4 Login Template">
-    <meta name="author" content="Your Name">
     <title>Login</title>
 
     <!-- Bootstrap CSS -->
@@ -62,16 +48,7 @@ if (isset($_SESSION['username'])) {
     </div><!-- az-signin-wrapper -->
 
     <!-- Bootstrap JS and dependencies -->
-    <!-- <script src="../lib/jquery/jquery.min.js"></script>
-    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/ionicons/ionicons.js"></script>
-    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../js/azia.js"></script>
-    <script>
-        $(function(){
-            'use strict'
-        });
-    </script> -->
+    
 
 </body>
 </html>
