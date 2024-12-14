@@ -31,7 +31,7 @@ $result = mysqli_query($conn, "SELECT * FROM barang ORDER BY id_barang DESC");
         echo "<td>".$user_data['tipe']."</td>";
         echo "<td>".$user_data['quantity']."</td>";    
         echo "<td>".$user_data['harga']."</td>";  
-        echo "<td><a href='edit.php?id=$user_data[id_barang]'>Edit</a> | <a href='delete.php?id=$user_data[id_barang]'>Delete</a></td></tr>";        
+        echo "<td><a href='edit.php?id=$user_data[id_barang]'>Edit</a> | <a href='../proses/delete_barang.php?id=$user_data[id_barang]'>Delete</a></td></tr>";        
     }
     ?>
     </table>
