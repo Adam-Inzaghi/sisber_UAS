@@ -1,6 +1,6 @@
 <?php
     require_once '../proses/koneksi.php';
-    $result = mysqli_query($conn, "SELECT * FROM barang ORDER BY id_barang DESC");
+    $result = mysqli_query($conn, "SELECT * FROM barang ORDER BY id_barang ASC");
 ?>
  
 <html>
@@ -9,7 +9,7 @@
     </head>
  
     <body>
-        <table width='80%'>
+        <table width='80%' border='1'>
             <tr>
                 <th>id_barang</th> 
                 <th>tipe</th> 
@@ -30,7 +30,8 @@
         </table>
 
         <br>
-
+        
+        <a href="form_barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Tambah Barang</a>
         <a href="../index.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Menu Utama</a>
     </body>
 </html>

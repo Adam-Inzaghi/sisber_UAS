@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Data berhasil disimpan!<br>";
-        echo "<a href='../tampilan/form_member.php'>Tambah Barang Lagi</a>";
+        echo "<a href='../tampilan/form_order.php'>Tambah Order Lagi</a><br>";
+        echo "<a href='../index.php'>Kembali ke Menu Utama</a>";
     } else {
         echo "Gagal menyimpan data: " . $stmt->error;
     }

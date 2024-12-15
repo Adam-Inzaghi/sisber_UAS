@@ -14,6 +14,7 @@
             <input type="text" id="no_hp" name="no_hp" required><br><br>
 
             <button type="submit">Simpan</button>
+            <a href="../index.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Menu Utama</a>
         </form>
 
     </body>
