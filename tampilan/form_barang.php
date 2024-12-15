@@ -1,23 +1,23 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Barang</title>
-</head>
-<body>
-    <h1>Tambah Data Barang</h1>
-    <form action="../proses/proses_barang.php" method="POST">
-        <label for="tipe">Tipe Barang:</label><br>
-        <input type="text" id="tipe" name="tipe" required><br><br>
+<html>
+    <head>
+        <title>Form Barang</title>
+    </head>
+    <body>
 
-        <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" required><br><br>
+        <h1>Tambah Data Barang</h1>
 
-        <label for="harga">Harga:</label><br>
-        <input type="number" id="harga" name="harga" required><br><br>
+        <form action="../proses/proses_barang.php" method="POST">
+            <label for="tipe">Tipe Barang:</label><br>
+            <input type="text" id="tipe" name="tipe" required><br><br>
 
-        <button type="submit">Simpan</button>
-    </form>
-</body>
+            <label for="quantity">Quantity:</label><br>
+            <input type="number" id="quantity" name="quantity" required><br><br>
+
+            <label for="harga">Harga:</label><br>
+            <input type="number" id="harga" name="harga" required><br><br>
+
+            <button type="submit">Simpan</button>
+        </form>
+        
+    </body>
 </html>
