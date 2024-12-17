@@ -38,12 +38,12 @@
             <br>
 
             <label>Playstation</label>
-            <select name="id_barang" id="id_barang" onchange="updatePrice()">
+            <select name="id_barang" id="id_barang" onclick="updatePrice()">
                 <?php 
                     while ($data_ps= mysqli_fetch_array($ps,MYSQLI_ASSOC)):; 
                 ?>
                     <option value="<?php echo $data_ps["id_barang"];?>" data-harga="<?php echo $data_ps["harga"];?>">
-                        <?php echo $data_ps["tipe"];?>
+                        <?php echo $data_ps["tipe"];?> <?php echo $data_ps["harga"];?>
                     </option>
                 <?php 
                     endwhile;
