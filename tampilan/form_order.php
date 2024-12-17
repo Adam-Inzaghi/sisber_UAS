@@ -6,6 +6,14 @@
 <html>
     <head>
         <title>Form Order</title>
+        <script>
+            function calculateTotal() {
+                var quantity = document.getElementById("quantity").value;
+                var price = document.getElementById("harga_barang").value;
+                var total = quantity * price;
+                document.getElementById("total_payment").value = total;
+            }
+        </script>
     </head>
     <body>
 
@@ -19,6 +27,7 @@
                 ?>
                     <option value="<?php echo $data_peminjam["id_pelanggan"];?>">
                         <?php echo $data_peminjam["nama"];?>
+                    </option>
                 <?php 
                     endwhile; 
                 ?>
@@ -29,11 +38,11 @@
             <br>
 
             <label>Playstation</label>
-            <select name="id_barang">
+            <select name="id_barang" id="id_barang" onchange="updatePrice()">
                 <?php 
                     while ($data_ps= mysqli_fetch_array($ps,MYSQLI_ASSOC)):; 
                 ?>
-                    <option value="<?php echo $data_ps["id_barang"];?>">
+                    <option value="<?php echo $data_ps["id_barang"];?>" data-harga="<?php echo $data_ps["harga"];?>">
                         <?php echo $data_ps["tipe"];?>
                     </option>
                 <?php 
@@ -46,7 +55,7 @@
             <br>
 
             <label for="quantity">Quantity :</label>
-            <input type="number" id="quantity" name="quantity">
+            <input type="number" id="quantity" name="quantity" oninput="calculateTotal()">
 
             <br>
             <br>
@@ -58,7 +67,9 @@
             <br>
 
             <label for="total_payment">Total Harga :</label>
-            <input type="number" id="total_payment" name="total_payment">
+            <input type="number" id="total_payment" name="total_payment" readonly>
+
+            <input type="hidden" id="harga_barang" value="0">
 
             <br>
             <br>
@@ -69,6 +80,16 @@
         <br>
 
         <a href="../index.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Menu Utama</a>
+        
+        <script>
+            function updatePrice() {
+                var select = document.getElementById("id_barang");
+                var selectedOption = select.options[select.selectedIndex];
+                var price = selectedOption.getAttribute("data-harga");
+                document.getElementById("harga_barang").value = price;
+                calculateTotal(); // Update total when the price changes
+            }
+        </script>
         
     </body>
 </html>
