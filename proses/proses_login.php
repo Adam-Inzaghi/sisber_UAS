@@ -1,6 +1,6 @@
 <?php 
 
-session_start(); // Panggil session_start() hanya di sini
+session_start();
 
 include("koneksi.php"); 
 
@@ -18,11 +18,14 @@ if ($result->num_rows > 0) {
     if (password_verify($password, $user['password'])) { 
         $_SESSION['username'] = $username; 
         header("Location: ../index.php"); 
+        exit; 
     } else { 
-        echo "Login gagal. Password salah. <a href='../tampilan/login.php'>Coba lagi</a>"; 
+        header("Location: ../tampilan/login.php?error=password_salah"); 
+        exit; 
     } 
 } else { 
-    echo "Login gagal. Pengguna tidak ditemukan. <a href='../tampilan/login.php'>Coba lagi</a>"; 
+    header("Location: ../tampilan/login.php?error=username_tidak_ditemukan"); 
+    exit; 
 } 
 
 $conn->close(); 

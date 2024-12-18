@@ -9,18 +9,38 @@
     <head>
         <title>Login</title>
         <link rel="stylesheet" href="../css/custom/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
     </head>
     <body class="az-body">
 
         <div class="az-signin-wrapper">
             <div class="az-card-signin">
 
-                <h1 class="az-logo">az<span>i</span>a</h1>
-
                 <div class="az-signin-header">
 
-                    <h2>Welcome back!</h2>
-                    <h4>Please sign in to continue</h4>
+                    <div id="lottie-container" style="width: 300px; height: 100px;"></div>
+                    <script>
+                        lottie.loadAnimation({
+                            container: document.getElementById('lottie-container'),
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: '../assett/playstation.json'
+                        });
+                    </script>
+
+                    <h4>Login Tatang Playstation</h4>
+
+                    <?php
+                        if (isset($_GET['error'])) {
+                            $error = $_GET['error'];
+                            if ($error == 'password_salah') {
+                                echo "<p style='color: red;'>Password salah, coba lagi.</p>";
+                            } elseif ($error == 'username_tidak_ditemukan') {
+                                echo "<p style='color: red;'>Username tidak ditemukan, coba lagi.</p>";
+                            }
+                        }
+                    ?>
 
                     <form action="../proses/proses_login.php" method="post">
                         <div class="form-group">
@@ -31,13 +51,9 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
                         </div>
-                        <button type="submit" class="btn btn-az-primary btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-purple btn-block">Login</button>
                     </form>
 
-                </div>
-
-                <div class="az-signin-footer">
-                    <p><a href="#">Forgot password?</a></p>
                 </div>
 
             </div>

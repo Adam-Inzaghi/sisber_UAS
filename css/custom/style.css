@@ -11555,8 +11555,8 @@ body {
   justify-content: center; }
 
 .az-card-signin {
-  height: 560px;
-  padding: 20px;
+  height: 450px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

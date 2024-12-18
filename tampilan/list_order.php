@@ -24,10 +24,10 @@
                         <li class="nnav-item">
                         <a href="../index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>Dashboard</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item ">
                             <a href="/tampilan/barang.php" class="nav-link"><i class="typcn typcn-document"></i>List Barang</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="/tampilan/list_order.php" class="nav-link"><i class="typcn typcn-document"></i>List Sewa</a>
                         </li>
                         <li class="nav-item">
@@ -49,11 +49,11 @@
                     <div class="az-dashboard-one-title">
                         <div>
                             <h2 class="az-dashboard-title">
-                                List Barang
+                                List Sewa
                             </h2>
                         </div>
                         <div class="az-content-header-right">
-                            <a href="form_barang.php" class="btn btn-purple">+ BARANG</a>
+                            <a href="form_order.php" class="btn btn-purple">+ SEWA</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -61,28 +61,28 @@
                             <thead>
                                 <tr>
                                     <!-- <th>ID Barang</th> -->
-                                    <th>Tipe</th>
+                                    <th>ID Sewa</th>
+                                    <th>Nama Pelanggan</th>
                                     <th>Quantity</th>
-                                    <th>Harga</th>
-                                    <th>Tersedia</th>
-                                    <th>Disewa</th>
-                                    <th>Action</th>
+                                    <th>Total Payment</th>
+                                    <th>Tanggal Pengembalian</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php  
+                                <!-- <?php  
                                     while($user_data = mysqli_fetch_array($result)) {         
                                         echo "<tr>";
                                         // echo "<td>".$user_data['id_barang']."</td>";
                                         echo "<td>".$user_data['tipe']."</td>";
                                         echo "<td>".$user_data['quantity']."</td>";    
-                                        echo "<td>".$user_data['harga']."</td>";
-                                        echo "<td>".$user_data['quantity']."</td>";
-                                        echo "<td>".$user_data['quantity']."</td>";  
+                                        echo "<td>".$user_data['harga']."</td>";  
                                         echo "<td><a href='edit.php?id=$user_data[id_barang]'>Edit</a> | <a href='../proses/delete_barang.php?id=$user_data[id_barang]'>Delete</a></td>";        
                                         echo "</tr>";
                                     }
-                                ?>
+                                ?> -->
                             </tbody>
                         </table>
                     </div>
