@@ -1,21 +1,66 @@
 <html>
     <head>
-        <title>Form Member</title>
+        <link rel="stylesheet" href="../css/custom/style.css">
     </head>
     <body>
 
-        <h1>Tambah Member Baru</h1>
-        
-        <form action="../proses/proses_member.php" method="POST">
-            <label for="nama">Nama Member:</label><br>
-            <input type="text" id="nama" name="nama" required><br><br>
+        <div class="az-header">
+            <div class="container">
+                <div class="az-header-left">
+                    <a href="../index.html" class="az-logo">Tatang Playstation</a>
+                    <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+                </div>
+                <div class="az-header-menu">
+                    <div class="az-header-menu-header">
+                        <a href="index.html" class="az-logo"><span></span> azia</a>
+                        <a href="" class="close">&times;</a>
+                    </div>
+                    <ul class="nav">
+                        <li class="nnav-item">
+                        <a href="../index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tampilan/barang.php" class="nav-link"><i class="typcn typcn-document"></i>List Barang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tampilan/list_order.php" class="nav-link"><i class="typcn typcn-document"></i>List Sewa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tampilan/member.php" class="nav-link"><i class="typcn typcn-document"></i>List Member</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="az-header-right">
+                    <li class="nav-item">
+                        <a href="../proses/proses_logout.php" class="nav-link"><i class="typcn typcn-document"></i>Logout</a>
+                    </li>
+                </div>
+            </div>
+        </div>
 
-            <label for="no_hp">Nomor Handphone: </label><br>
-            <input type="text" id="no_hp" name="no_hp" required><br><br>
+        <div class="az-content az-content-dashboard">
+            <div class="container">
+                <div class="az-content-body">
+                    <div class="az-dashboard-one-title">
+                        <div>
+                            <h2 class="az-dashboard-title">
+                                Tambah Member
+                            </h2>
+                        </div>
+                    </div>
+                    <form action="../proses/proses_member.php" method="POST">
+                        <label for="nama">Nama Member:</label><br>
+                        <input class="form-control select2" type="text" id="nama" name="nama" required><br><br>
 
-            <button type="submit">Simpan</button>
-            <a href="../index.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Menu Utama</a>
-        </form>
+                        <label for="no_hp">Nomor Handphone: </label><br>
+                        <input class="form-control select2" type="text" id="no_hp" name="no_hp" required><br><br>
+
+                        <button class="btn btn-purple" type="submit">Simpan</button>
+                    </form>
+                    <div class="az-dashboard-one-title">
+                </div>
+            </div>
+        </div>
 
     </body>
 </html>
