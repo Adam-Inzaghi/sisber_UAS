@@ -74,7 +74,7 @@ $result = mysqli_query($conn, "SELECT * FROM pelanggan ORDER BY id_pelanggan ASC
                                         echo "<td>".$user_data['id_pelanggan']."</td>";
                                         echo "<td>".$user_data['nama']."</td>";
                                         echo "<td>".$user_data['no_hp']."</td>";  
-                                        echo "<td><a href='edit.php?id=$user_data[id_pelanggan]'>Edit</a> | <a href='../proses/delete_member.php?id=$user_data[id_pelanggan]'>Delete</a></td>";
+                                        echo "<td><a href='edit_member.php?id=$user_data[id_pelanggan]'>Edit</a> | <a href='../proses/delete_member.php?id=$user_data[id_pelanggan]'>Delete</a></td>";
                                         echo "</tr>";        
                                     }
                                 ?>
