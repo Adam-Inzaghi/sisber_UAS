@@ -92,7 +92,7 @@ ORDER BY o.id_order ASC");
                                                 <input type='hidden' name='id_order' value='{$user_data['id_order']}'>
                                                 <input type='hidden' name='id_barang' value='{$user_data['id_barang']}'>
                                                 <input type='hidden' name='quantity' value='{$user_data['quantity']}'>
-                                                <button type='submit' class='btn btn-success'>Kembalikan</button>
+                                                <button type='submit' class='btn btn-purple'>Kembalikan</button>
                                             </form>
                                         </td>";
                                     }
