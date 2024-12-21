@@ -46,7 +46,21 @@
     //total barang tersedia
     $barang_tersedia = "SELECT SUM(quantity) AS total_quantity FROM barang b";
     $result_barang_tersedia = mysqli_fetch_assoc(mysqli_query($conn, $barang_tersedia));
-    $total_quantity = $result_barang_tersedia['total_quantity'];
+    $total_quantity_tersedia = $result_barang_tersedia['total_quantity'];
+    
+    //total barang disewa
+    $barang_disewa = "SELECT SUM(quantity) AS total_quantity FROM `order` o WHERE o.status = 0";
+    $result_barang_disewa = mysqli_query($conn, $barang_disewa);
+
+    // Ambil hasil query
+    if ($result_barang_disewa) {
+        $row = mysqli_fetch_assoc($result_barang_disewa);
+        $total_quantity = $row['total_quantity'];
+        // Jika tidak ada hasil atau total_quantity NULL, set ke 0
+        $total_quantity = $total_quantity !== null ? $total_quantity : 0;
+    } else {
+        $total_quantity = 0;
+    }
 ?>
 
 <html>
@@ -115,8 +129,8 @@
                                         <div class="card-body row row-sm">
                                             <div class="col-6 d-sm-flex align-items-center">
                                                 <div>
-                                                    <h2><?php echo $total_quantity; ?></h2>
-                                                    <label>Playstation</label>
+                                                    <h2><?php echo $total_quantity_tersedia; ?></h2>
+                                                    <label>Barang</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,8 +144,8 @@
                                         <div class="card-body row row-sm">
                                             <div class="col-6 d-sm-flex align-items-center">
                                                 <div>
-                                                    <h2>8</h2>
-                                                    <label>Playstation</label>
+                                                    <h2><?php echo $total_quantity; ?></h2>
+                                                    <label>Barang</label>
                                                 </div>
                                             </div>
                                         </div>
