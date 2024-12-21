@@ -44,10 +44,11 @@
     $total_penghasilan = $income_result['total_penghasilan'] ?? 0;
 
     //total barang tersedia
-    $barang_tersedia = "SELECT SUM(quantity) AS total_quantity FROM `order` o";
+    $barang_tersedia = "SELECT SUM(quantity) AS total_quantity FROM barang b";
     $result_barang_tersedia = mysqli_fetch_assoc(mysqli_query($conn, $barang_tersedia));
     $total_quantity = $result_barang_tersedia['total_quantity'];
 ?>
+
 <html>
     <head>
         <link rel="stylesheet" href="./css/custom/style.css">
