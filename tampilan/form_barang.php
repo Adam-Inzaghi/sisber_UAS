@@ -43,7 +43,7 @@
                     <div class="az-dashboard-one-title">
                         <div>
                             <h2 class="az-dashboard-title">
-                                Tambah Member
+                                Tambah Barang
                             </h2>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 <?php
     require_once '../proses/koneksi.php';
-    $result = mysqli_query($conn, "SELECT * FROM barang ORDER BY id_barang ASC");
+    $result = mysqli_query($conn, "SELECT o.id_order, m.nama, b.tipe, o.quantity, o.total_payment, o.tgl_pengembalian FROM `order` o LEFT JOIN `pelanggan` m ON o.id_pelanggan = m.id_pelanggan LEFT JOIN `barang` b ON o.id_barang = b.id_barang ORDER BY o.id_order ASC");
 ?>
  
 <html>
@@ -60,29 +60,28 @@
                         <table class="table table-striped mg-b-0">
                             <thead>
                                 <tr>
-                                    <!-- <th>ID Barang</th> -->
                                     <th>ID Sewa</th>
                                     <th>Nama Pelanggan</th>
+                                    <th>Nama Barang</th>
                                     <th>Quantity</th>
                                     <th>Total Payment</th>
                                     <th>Tanggal Pengembalian</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
-                                    <th>Status</th>
+                                    <!-- <th>Status</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <?php  
+                                 <?php  
                                     while($user_data = mysqli_fetch_array($result)) {         
                                         echo "<tr>";
-                                        // echo "<td>".$user_data['id_barang']."</td>";
+                                        echo "<td>".$user_data['id_order']."</td>";
+                                        echo "<td>".$user_data['nama']."</td>";
                                         echo "<td>".$user_data['tipe']."</td>";
                                         echo "<td>".$user_data['quantity']."</td>";    
-                                        echo "<td>".$user_data['harga']."</td>";  
-                                        echo "<td><a href='edit.php?id=$user_data[id_barang]'>Edit</a> | <a href='../proses/delete_barang.php?id=$user_data[id_barang]'>Delete</a></td>";        
+                                        echo "<td>Rp. " . number_format($user_data['total_payment'], 0, ',', '.') . "</td>";
+                                        echo "<td>".$user_data['tgl_pengembalian']."</td>";
                                         echo "</tr>";
                                     }
-                                ?> -->
+                                ?>
                             </tbody>
                         </table>
                     </div>

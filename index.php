@@ -1,4 +1,7 @@
 <?php
+    require_once 'proses/koneksi.php';
+    $result = mysqli_query($conn, "SELECT o.id_order, m.nama, b.tipe, o.quantity, o.total_payment, o.tgl_pengembalian FROM `order` o LEFT JOIN `pelanggan` m ON o.id_pelanggan = m.id_pelanggan LEFT JOIN `barang` b ON o.id_barang = b.id_barang ORDER BY o.id_order ASC");
+
     session_start();
     if (!isset($_SESSION['username'])) {
         header("Location: tampilan/login.php");
@@ -118,63 +121,35 @@
                             <div class="card card-table-one">
                                 <h6 class="card-title">List Sewa</h6>
                                 <br>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>&nbsp;</th>
-                                            <th>Nama Pelanggan</th>
-                                            <th>Total Payment</th>
-                                            <th>Tanggal Pengembalian</th>
-                                            <td>Status</td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Ferdian Syahputra</td>
-                                            <td>Rp. 200.000</td>
-                                            <td>22/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Adam Inzaghi</td>
-                                            <td>Rp. 400.000</td>
-                                            <td>21/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Martin Marunung</td>
-                                            <td>Rp. 350.000</td>
-                                            <td>20/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Tatang Patudin</td>
-                                            <td>Rp. 100.000</td>
-                                            <td>19/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Arya Fadhil Sagitarisandy</td>
-                                            <td>Rp. 200.000</td>
-                                            <td>18/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="flag-icon flag-icon-us flag-icon-squared"></i></td>
-                                            <td>Agus Lore</td>
-                                            <td>Rp. 100.000</td>
-                                            <td>17/12/2024</td>
-                                            <td>Belum Dikembalikan</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mg-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID Sewa</th>
+                                                    <th>Nama Pelanggan</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total Payment</th>
+                                                    <!-- <th>Tanggal Pengembalian</th> -->
+                                                    <!-- <th>Status</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php  
+                                                    while($user_data = mysqli_fetch_array($result)) {         
+                                                        echo "<tr>";
+                                                        echo "<td>".$user_data['id_order']."</td>";
+                                                        echo "<td>".$user_data['nama']."</td>";
+                                                        echo "<td>".$user_data['tipe']."</td>";
+                                                        echo "<td>".$user_data['quantity']."</td>";    
+                                                        echo "<td>Rp. " . number_format($user_data['total_payment'], 0, ',', '.') . "</td>";
+                                                        // echo "<td>".$user_data['tgl_pengembalian']."</td>";
+                                                        echo "</tr>";
+                                                    }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                             </div>
                         </div>
                     </div>
