@@ -18,7 +18,7 @@ ORDER BY o.id_order ASC");
         <div class="az-header">
             <div class="container">
                 <div class="az-header-left">
-                    <a href="../index.html" class="az-logo">Tatang Playstation</a>
+                    <a href="../index.php" class="az-logo">Tatang Playstation</a>
                     <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
                 </div>
                 <div class="az-header-menu">
