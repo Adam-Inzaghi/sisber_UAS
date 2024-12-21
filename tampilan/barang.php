@@ -17,21 +17,21 @@
                 </div>
                 <div class="az-header-menu">
                     <div class="az-header-menu-header">
-                        <a href="index.html" class="az-logo"><span></span> azia</a>
+                        <a href="index.php" class="az-logo"><span></span> azia</a>
                         <a href="" class="close">&times;</a>
                     </div>
                     <ul class="nav">
-                        <li class="nnav-item">
-                        <a href="../index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>Dashboard</a>
+                        <li class="nav-item">
+                        <a href="../index.php" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>Dashboard</a>
                         </li>
                         <li class="nav-item active">
-                            <a href="/tampilan/barang.php" class="nav-link"><i class="typcn typcn-document"></i>List Barang</a>
+                            <a href="barang.php" class="nav-link"><i class="typcn typcn-document"></i>List Barang</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/tampilan/list_order.php" class="nav-link"><i class="typcn typcn-document"></i>List Sewa</a>
+                            <a href="list_order.php" class="nav-link"><i class="typcn typcn-document"></i>List Sewa</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/tampilan/member.php" class="nav-link"><i class="typcn typcn-document"></i>List Member</a>
+                            <a href="member.php" class="nav-link"><i class="typcn typcn-document"></i>List Member</a>
                         </li>
                     </ul>
                 </div>
