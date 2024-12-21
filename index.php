@@ -1,16 +1,72 @@
 <?php
     require_once 'proses/koneksi.php';
-    $result = mysqli_query($conn, "SELECT o.id_order, m.nama, b.tipe, o.quantity, o.total_payment, o.tgl_pengembalian FROM `order` o LEFT JOIN `pelanggan` m ON o.id_pelanggan = m.id_pelanggan LEFT JOIN `barang` b ON o.id_barang = b.id_barang ORDER BY o.id_order ASC");
-
     session_start();
     if (!isset($_SESSION['username'])) {
         header("Location: tampilan/login.php");
         exit();
     }
+
+    // Default bulan dan tahun adalah bulan dan tahun saat ini
+    $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+    $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
+
+    // Ambil data untuk tabel List Sewa berdasarkan bulan dan tahun
+    $result = mysqli_query($conn, 
+        "SELECT o.id_order, m.nama, b.tipe, o.quantity, o.total_payment, o.tgl_pengembalian 
+         FROM `order` o 
+         LEFT JOIN `pelanggan` m ON o.id_pelanggan = m.id_pelanggan 
+         LEFT JOIN `barang` b ON o.id_barang = b.id_barang 
+         WHERE MONTH(o.tgl_pengembalian) = '$bulan' AND YEAR(o.tgl_pengembalian) = '$tahun' 
+         ORDER BY o.id_order ASC"
+    );
+
+    // Ambil data untuk Chart.js berdasarkan bulan dan tahun
+    $query = "SELECT b.tipe, SUM(o.quantity) as total_sewa 
+              FROM `order` o 
+              LEFT JOIN `barang` b ON o.id_barang = b.id_barang 
+              WHERE MONTH(o.tgl_pengembalian) = '$bulan' AND YEAR(o.tgl_pengembalian) = '$tahun' 
+              GROUP BY b.tipe";
+    $chart_result = mysqli_query($conn, $query);
+
+    $labels = [];
+    $data = [];
+
+    while ($row = mysqli_fetch_assoc($chart_result)) {
+        $labels[] = $row['tipe'];
+        $data[] = $row['total_sewa'];
+    }
+
+    // Ambil total penghasilan
+    $income_query = "SELECT SUM(o.total_payment) as total_penghasilan 
+                     FROM `order` o 
+                     WHERE MONTH(o.tgl_pengembalian) = '$bulan' AND YEAR(o.tgl_pengembalian) = '$tahun'";
+    $income_result = mysqli_fetch_assoc(mysqli_query($conn, $income_query));
+    $total_penghasilan = $income_result['total_penghasilan'] ?? 0;
+
+    //total barang tersedia
+    $barang_tersedia = "SELECT SUM(quantity) AS total_quantity FROM barang b";
+    $result_barang_tersedia = mysqli_fetch_assoc(mysqli_query($conn, $barang_tersedia));
+    $total_quantity_tersedia = $result_barang_tersedia['total_quantity'];
+    
+    //total barang disewa
+    $barang_disewa = "SELECT SUM(quantity) AS total_quantity FROM `order` o WHERE o.status = 0";
+    $result_barang_disewa = mysqli_query($conn, $barang_disewa);
+
+    // Ambil hasil query
+    if ($result_barang_disewa) {
+        $row = mysqli_fetch_assoc($result_barang_disewa);
+        $total_quantity = $row['total_quantity'];
+        // Jika tidak ada hasil atau total_quantity NULL, set ke 0
+        $total_quantity = $total_quantity !== null ? $total_quantity : 0;
+    } else {
+        $total_quantity = 0;
+    }
 ?>
+
 <html>
     <head>
         <link rel="stylesheet" href="./css/custom/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
         <div class="az-header">
@@ -56,27 +112,9 @@
                                 Selamat datang, <?php echo htmlspecialchars($_SESSION['username']); ?>!
                             </h2>
                         </div>
-                        <div class="az-content-header-right">
-                            <!-- <div class="media">
-                                <div class="media-body">
-                                    <label>Start Date</label>
-                                    <h6>-</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <label>End Date</label>
-                                    <h6>-</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <label>Order Category</label>
-                                    <h6>All Categories</h6> 
-                                </div>
-                            </div> -->
-                            <a href="tampilan/form_order.php" class="btn btn-purple">+ SEWA</a>
-                        </div>
+                        <!-- <div class="az-content-header-right">
+                            <a href="form_order.php" class="btn btn-purple">+ SEWA</a>
+                        </div> -->
                     </div>
 
 
@@ -86,13 +124,13 @@
                                 <div class="col-md-6 col-lg-12 mg-b-20 mg-md-b-0 mg-lg-b-20">
                                     <div class="card card-dashboard-five">
                                         <div class="card-header">
-                                            <h6 class="card-title">Playstation Tersedia</h6>
+                                            <h6 class="card-title">Barang Tersedia</h6>
                                         </div>
                                         <div class="card-body row row-sm">
                                             <div class="col-6 d-sm-flex align-items-center">
                                                 <div>
-                                                    <h2>15</h2>
-                                                    <label>Playstation</label>
+                                                    <h2><?php echo $total_quantity_tersedia; ?></h2>
+                                                    <label>Barang</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,13 +139,13 @@
                                 <div class="col-md-6 col-lg-12 mg-b-20 mg-md-b-0 mg-lg-b-20">
                                     <div class="card card-dashboard-five">
                                         <div class="card-header">
-                                            <h6 class="card-title">Playstation Disewa</h6>
+                                            <h6 class="card-title">Barang Disewa</h6>
                                         </div>
                                         <div class="card-body row row-sm">
                                             <div class="col-6 d-sm-flex align-items-center">
                                                 <div>
-                                                    <h2>8</h2>
-                                                    <label>Playstation</label>
+                                                    <h2><?php echo $total_quantity; ?></h2>
+                                                    <label>Barang</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,72 +157,77 @@
 
                         <div class="col-lg-7 col-xl-8 mg-t-20 mg-lg-t-0">
                             <div class="card card-table-one">
-                                <h6 class="card-title">List Sewa</h6>
+                                <h6 class="card-title">Statistik Penyewaan</h6>
                                 <br>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped mg-b-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID Sewa</th>
-                                                    <th>Nama Pelanggan</th>
-                                                    <th>Nama Barang</th>
-                                                    <th>Quantity</th>
-                                                    <th>Total Payment</th>
-                                                    <!-- <th>Tanggal Pengembalian</th> -->
-                                                    <!-- <th>Status</th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php  
-                                                    while($user_data = mysqli_fetch_array($result)) {         
-                                                        echo "<tr>";
-                                                        echo "<td>".$user_data['id_order']."</td>";
-                                                        echo "<td>".$user_data['nama']."</td>";
-                                                        echo "<td>".$user_data['tipe']."</td>";
-                                                        echo "<td>".$user_data['quantity']."</td>";    
-                                                        echo "<td>Rp. " . number_format($user_data['total_payment'], 0, ',', '.') . "</td>";
-                                                        // echo "<td>".$user_data['tgl_pengembalian']."</td>";
-                                                        echo "</tr>";
-                                                    }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                
+                                <div class="az-content-header-right">
+                                    <form method="GET" class="form-inline">
+                                        <select name="bulan" class="form-control">
+                                            <?php
+                                            for ($i = 1; $i <= 12; $i++) {
+                                                $selected = ($i == $bulan) ? 'selected' : '';
+                                                echo "<option value='$i' $selected>" . date('F', mktime(0, 0, 0, $i, 1)) . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <select name="tahun" class="form-control">
+                                            <?php
+                                            for ($i = 2020; $i <= date('Y'); $i++) {
+                                                $selected = ($i == $tahun) ? 'selected' : '';
+                                                echo "<option value='$i' $selected>$i</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                        <button type="submit" class="btn btn-purple">Filter</button>
+                                    </form>
+                                </div>
+
+                                <div class="card-body">
+                                    <canvas id="myBarChart"></canvas>
+                                </div>
                             </div>
+
+                            
+
+                            <script>
+                                const labels = <?php echo json_encode($labels); ?>;
+                                const data = <?php echo json_encode($data); ?>;
+                                const totalPenghasilan = <?php echo json_encode($total_penghasilan); ?>;
+
+                                const ctx = document.getElementById('myBarChart').getContext('2d');
+                                const myBarChart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [
+                                            {
+                                                label: 'Jumlah Sewa',
+                                                data: data,
+                                                backgroundColor: 'rgba(110, 66, 193, 0.24)',
+                                                borderColor: 'rgba(111, 66, 193, 1)',
+                                                borderWidth: 1
+                                            },
+                                            {
+                                                label: 'Total Penghasilan',
+                                                data: Array(labels.length).fill(totalPenghasilan),
+                                                backgroundColor: 'rgba(66, 193, 110, 0.24)',
+                                                borderColor: 'rgba(66, 193, 110, 1)',
+                                                borderWidth: 1
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            </script>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- <h2>
-            Selamat datang, <?php echo htmlspecialchars($_SESSION['username']); ?>!
-        </h2> -->
-<!-- 
-        <a href="tampilan/form_barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">
-            Tambah Barang
-        </a>
-
-        <a href="tampilan/form_member.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">
-            Tambah Member
-        </a>
-
-        <a href="tampilan/member.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">
-            Data Member
-        </a>
-
-        <a href="tampilan/form_order.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">
-            Tambah Orderan
-        </a>
-
-        <a href="tampilan/barang.php" class="btn btn-primary" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">
-            Data Barang
-        </a> -->
-        
-        <!-- <p>
-            <a href="proses/proses_logout.php">
-                Logout
-            </a>
-        </p> -->
     </body>
 </html>
