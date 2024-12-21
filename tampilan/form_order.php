@@ -58,6 +58,7 @@
                     <form action="../proses/proses_order.php" method="POST">
                         <label>Nama Peminjam</label>
                         <select class="form-control select2" name="id_pelanggan">
+                            <option selected disabled>Pilih Peminjam</option>
                             <?php 
                                 while ($data_peminjam = mysqli_fetch_array($result,MYSQLI_ASSOC)):; 
                             ?>
@@ -76,6 +77,7 @@
             
                         <label>Playstation</label>
                         <select class="form-control select2" name="id_barang" id="id_barang" onclick="updatePrice()">
+                            <option selected disabled>Pilih Barang</option>
                             <?php 
                                 while ($data_ps= mysqli_fetch_array($ps,MYSQLI_ASSOC)):; 
                             ?>
