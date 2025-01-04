@@ -10,9 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ss", $nama, $no_hp);
 
     if ($stmt->execute()) {
-        echo "Data berhasil disimpan!<br>";
-        echo "<a href='../tampilan/form_member.php'>Tambah Member Lagi</a><br>";
-        echo "<a href='../index.php'>Kembali ke Menu Utama</a>";
+        header("Location: ../tampilan/member.php");
     } else {
         echo "Gagal menyimpan data: " . $stmt->error;
     }

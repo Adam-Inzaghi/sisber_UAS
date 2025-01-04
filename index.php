@@ -37,11 +37,19 @@
     }
 
     // Ambil total penghasilan
-    $income_query = "SELECT SUM(o.total_payment) as total_penghasilan 
+    $income_query = "SELECT b.tipe, SUM(o.total_payment) as total_penghasilan 
                      FROM `order` o 
-                     WHERE MONTH(o.tgl_pengembalian) = '$bulan' AND YEAR(o.tgl_pengembalian) = '$tahun'";
+                     LEFT JOIN `barang` b ON o.id_barang = b.id_barang
+                     WHERE MONTH(o.tgl_pengembalian) = '$bulan' AND YEAR(o.tgl_pengembalian) = '$tahun'
+                     GROUP BY b.tipe";
     $income_result = mysqli_fetch_assoc(mysqli_query($conn, $income_query));
     $total_penghasilan = $income_result['total_penghasilan'] ?? 0;
+    $chart_resultPenghasilan = mysqli_query($conn, $income_query);
+
+    while ($row = mysqli_fetch_assoc($chart_resultPenghasilan)) {
+        $labels[] = $row['tipe'];
+        $resultPenghasilan[] = $row['total_penghasilan'];
+    }
 
     //total barang tersedia
     $barang_tersedia = "SELECT SUM(quantity) AS total_quantity FROM barang b";
@@ -192,6 +200,7 @@
                             <script>
                                 const labels = <?php echo json_encode($labels); ?>;
                                 const data = <?php echo json_encode($data); ?>;
+                                const dataPenghasilan = <?php echo json_encode($resultPenghasilan); ?>;
                                 const totalPenghasilan = <?php echo json_encode($total_penghasilan); ?>;
 
                                 const ctx = document.getElementById('myBarChart').getContext('2d');
@@ -207,9 +216,16 @@
                                                 borderColor: 'rgba(111, 66, 193, 1)',
                                                 borderWidth: 1
                                             },
+                                            // {
+                                            //     label: 'Total Penghasilan',
+                                            //     data: Array(labels.length).fill(totalPenghasilan),
+                                            //     backgroundColor: 'rgba(66, 193, 110, 0.24)',
+                                            //     borderColor: 'rgba(66, 193, 110, 1)',
+                                            //     borderWidth: 1
+                                            // },
                                             {
                                                 label: 'Total Penghasilan',
-                                                data: Array(labels.length).fill(totalPenghasilan),
+                                                data: dataPenghasilan,
                                                 backgroundColor: 'rgba(66, 193, 110, 0.24)',
                                                 borderColor: 'rgba(66, 193, 110, 1)',
                                                 borderWidth: 1

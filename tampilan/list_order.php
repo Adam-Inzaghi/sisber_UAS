@@ -6,7 +6,7 @@ $result = mysqli_query($conn, "SELECT o.id_order, m.id_pelanggan, m.nama, b.id_b
 FROM `order` o 
 LEFT JOIN `pelanggan` m ON o.id_pelanggan = m.id_pelanggan 
 LEFT JOIN `barang` b ON o.id_barang = b.id_barang 
-ORDER BY o.id_order ASC");
+ORDER BY o.id_order DESC");
 ?>
 
 <html>

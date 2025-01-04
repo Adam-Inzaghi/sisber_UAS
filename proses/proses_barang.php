@@ -10,9 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("sii", $tipe, $quantity, $harga);
 
     if ($stmt->execute()) {
-        echo "Data berhasil disimpan!<br>";
-        echo "<a href='../tampilan/form_barang.php'>Tambah Barang Lagi</a><br>";
-        echo "<a href='../index.php'>Kembali ke Menu Utama</a>";
+        header("Location: ../tampilan/barang.php");
     } else {
         echo "Gagal menyimpan data: " . $stmt->error;
     }

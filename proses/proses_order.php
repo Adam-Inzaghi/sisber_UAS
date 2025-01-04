@@ -31,10 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Commit the transaction
         $conn->commit();
 
-        echo "Data berhasil disimpan dan stok barang berhasil diperbarui!<br>";
-        echo "<a href='../tampilan/form_order.php'>Tambah Order Lagi</a><br>";
-        echo "<a href='../index.php'>Kembali ke Menu Utama</a>";
+        // echo "Data berhasil disimpan dan stok barang berhasil diperbarui!<br>";
+        // echo "<a href='../tampilan/form_order.php'>Tambah Order Lagi</a><br>";
+        // echo "<a href='../index.php'>Kembali ke Menu Utama</a>";
 
+        header("Location: ../tampilan/list_order.php");
     } catch (Exception $e) {
         // Rollback the transaction on error
         $conn->rollback();

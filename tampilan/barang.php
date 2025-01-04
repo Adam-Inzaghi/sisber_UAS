@@ -64,8 +64,8 @@
                                     <th>Tipe</th>
                                     <th>Quantity</th>
                                     <th>Harga</th>
-                                    <th>Tersedia</th>
-                                    <th>Disewa</th>
+                                    <!-- <th>Tersedia</th>
+                                    <th>Disewa</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -77,8 +77,8 @@
                                         echo "<td>".$user_data['tipe']."</td>";
                                         echo "<td>".$user_data['quantity']."</td>";    
                                         echo "<td>Rp. " . number_format($user_data['harga'], 0, ',', '.') . "</td>";
-                                        echo "<td>".$user_data['quantity']."</td>";
-                                        echo "<td>".$user_data['quantity']."</td>";  
+                                        // echo "<td>".$user_data['quantity']."</td>";
+                                        // echo "<td>".$user_data['quantity']."</td>";  
                                         echo "<td><a href='edit_barang.php?id=$user_data[id_barang]'>Edit</a> | <a href='../proses/delete_barang.php?id=$user_data[id_barang]'>Delete</a></td>";        
                                         echo "</tr>";
                                     }
